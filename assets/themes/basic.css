@@ -1,0 +1,308 @@
+/* 基础样式 */
+/* @import url('https://jsd.xsawa.us.kg/npm/@picocss/pico@2/css/pico.pink.min.css'); */
+@import url('https://jsd.xsawa.us.kg/gh/FortAwesome/Font-awesome@6.6.0/css/all.min.css');
+@import url('https://jsd.xsawa.us.kg/npm/firacode@6.2.0/distr/fira_code.min.css');
+@import url('https://jsd.xsawa.us.kg/npm/misans@4.0.0/lib/Normal/MiSans-Regular.min.css');
+@import url('./basic.boot.css');
+
+/* 配色自适应 */
+:root {
+	--info-font-weight: bold;
+
+	overflow: hidden;
+}
+html[scheme="dark"]:root {
+	--info-font-weight: normal;
+
+	color-scheme: dark;
+}
+
+/* 滚动条美化 */
+::-webkit-scrollbar {
+	width: 0.6em;
+	border-radius: 10px;
+	background-color: var(--bg-color);
+}
+::-webkit-scrollbar-thumb {
+	border-radius: 10px;
+	background-color: transparent;
+	transition: background-color 0.6s ease;
+}
+
+/* 原生标签美化 */
+body {
+	margin: 0;
+	height: 100vh;
+	background-color: var(--bg-color) !important;
+	color: var(--color) !important;
+	font-family: 'MiSans', sans-serif;
+	font-variant-ligatures: normal;
+	font-size: 1em;
+	line-height: 1.4;
+}
+code {
+	font-family: 'fira code', monospace;
+	border: 0.2em solid #808080;
+	border-radius: 4px;
+	background-color: #80808060;
+}
+details {
+	background-color: #00000080;
+	border: 0.2em solid transparent; /* 悬停防抖 */
+	border-left: 0.2em solid #80808080;
+	padding: 4px;
+	width: 100%;
+	transition: border-color 0.6s ease;
+}
+details:hover {
+	border: 0.2em solid var(--color);
+	border-radius: 0.2em;
+}
+summary {
+	display: block; /* hide the default marker */
+	outline: none; /* hide the default outline */
+}
+details summary::before {
+	color: #f00;
+	content: "";
+	transition: transform 0.6s ease;
+}
+details[open] summary::before {
+	transform: rotate(90deg);
+}
+select, input:not([type="checkbox"]) {
+	font-family: 'MiSans', sans-serif;
+	font-size: 0.8em;
+	line-height: 1.4;
+	padding: 4px;
+	border: 0.2em solid transparent;
+	border-radius: 6px;
+	/* background-color: transparent; */
+	color: var(--color);
+	transition: border-color 0.6s ease;
+	width: 100%;
+}
+select:focus, input:focus,
+select:hover, input:hover {
+	border-color: var(--color);
+}
+input[type="checkbox"] {
+	width: 1.2em;
+	height: 1.2em;
+}
+
+/* 自定义背景接口 */
+#custom-background {
+	height: 100%;
+	width: 100%;
+	position: fixed;
+	top: 0;
+	left: 0;
+	z-index: -1;
+	pointer-events: none;
+}
+
+/* 顶栏 */
+#title_panel {
+	display: flex;
+	justify-content: space-between;
+	align-items: center;
+	height: 4em;
+	user-select: none;
+}
+#title_panel button {
+	font-size: 1.2em;
+}
+
+/* vue app */
+#app {
+	height: 100%;
+}
+.monaco-editor-container {
+	height: calc(100% - 6em);
+}
+
+/* 底栏 */
+#footer_panel {
+	display: flex;
+	justify-content: space-between;
+	align-items: center;
+}
+#footer_panel #info {
+	font-size: 0.8em;
+	font-weight: var(--info-font-weight);
+}
+/* 按钮 */
+button.normal {
+	font-size: 1em;
+	padding: 2px;
+	margin: 0.4em;
+	border-radius: 4px;
+	color: #1f1f1f;
+	border: 0.2em solid #00ffff77;
+	background-color: #0ff;
+	transition: background-color 0.6s ease, color 0.6s ease;
+}
+button.normal.disabled {
+	border-color: #a2a2a2 !important;
+	color: #808080 !important;
+	background-color: #1f1f1f80 !important;
+	cursor: not-allowed;
+	pointer-events: none;
+}
+button.normal:hover {
+	color: #413e3e;
+	background-color: #00ffff80;
+}
+button.normal:active {
+	color: #000;
+	border-color: #ff0;
+	background-color: #0ff;
+}
+button.normal.primary {
+	background-color: #00bfff;
+}
+button.normal.primary:hover {
+	background-color: #00bfff80;
+}
+button.normal.primary:active {
+	color: #0ff;
+	border-color: #ff0;
+	background-color: #00bfff;
+}
+button.normal.danger {
+	color: #0ff;
+	border-color: #ff000080;
+	background-color: #f00;
+}
+button.normal.danger:hover {
+	background-color: #ff000080;
+}
+button.normal.danger:active {
+	border-color: #ff0;
+	background-color: #f00;
+}
+button.normal.success {
+	border-color: #ffff0080;
+	background-color: #ff0;
+}
+button.normal.success:hover {
+	background-color: #ffff0080;
+}
+button.normal.success:active {
+	color: #0ff;
+	border-color: #00f;
+	background-color: #ff0;
+}
+button.icon {
+	border: none;
+	background: none;
+	height: 2.4em;
+	width: 2.4em;
+	color: var(--color);
+	cursor: pointer;
+	transition: opacity 0.6s ease-in-out;
+}
+button.icon:hover {
+	opacity: 0.6;
+}
+button.icon:active {
+	opacity: 0.3;
+}
+
+/* 右上角通知 */
+.Vue-Toastification__container {
+	z-index: 10000 !important;
+}
+
+/* 弹窗 */
+black { /* 弹窗背景遮罩 */
+	display: block;
+	position: absolute;
+	top: 0;
+	left: 0;
+	width: 100%;
+	height: 100%;
+	background-color: #00000080;
+	z-index: 9999 !important;
+	user-select: none;
+}
+.result_box {
+	overflow-y: auto;
+	scroll-behavior: smooth;
+	display: block;
+	position: absolute;
+	top: 20vh;
+	left: 35vw;
+	height: auto;
+	max-height: 50vh;
+	width: 30vw;
+	color: var(--color);
+	background-color: var(--bg-color);
+	border-radius: 10px;
+	padding: 10px;
+	z-index: 10000 !important;
+	user-select: none;
+}
+.result_box:hover::-webkit-scrollbar-thumb {
+	background-color: var(--color);
+}
+/* .result_box * {
+	width: 100%;
+} */
+.result_box .title {
+	font-size: 1.6em;
+	font-weight: bold;
+	border-bottom: 1px solid var(--color);
+	width: 100%;
+}
+.result_box .title:not(:first-child) {
+	margin-top: 1em;
+}
+.result_box pre {
+	font-family: 'fira code', monospace;
+}
+
+/* 设置窗口 */
+.result_box:has(#settings) {
+	left: 20vw;
+	width: 50vw;
+}
+.result_box label, .result_box .danger_zone label {
+	margin-top: 0.6em;
+}
+.result_box #settings {
+	font-size: 1.2em;
+	display: flex;
+	flex-wrap: wrap;
+	justify-content: space-between;
+	align-items: center;
+	margin: 6px;
+}
+#settings input[type="number"] {
+	width: 2em;
+}
+#settings .danger_zone:hover {
+	border-color: #f00;
+}
+#settings .danger_zone summary {
+	display: flex;
+	color: red;
+	font-weight: bold;
+	margin-top: 0.2em;
+	align-items: flex-start;
+}
+#settings .danger_zone summary::before {
+	display: inline-block;
+	width: 1.2em;
+	height: 1.2em;
+	background-image: url('data:image/svg+xml,<svg xmlns="http://www.w3.org/2000/svg" fill="red" viewBox="0 0 512 512"><!--!Font Awesome Free 6.6.0 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license/free Copyright 2024 Fonticons, Inc.--><path d="M278.6 233.4c12.5 12.5 12.5 32.8 0 45.3l-160 160c-12.5 12.5-32.8 12.5-45.3 0s-12.5-32.8 0-45.3L210.7 256 73.4 118.6c-12.5-12.5-12.5-32.8 0-45.3s32.8-12.5 45.3 0l160 160z"/></svg>');
+	background-repeat: no-repeat;
+	background-size: contain;
+	margin-left: 0.2em;
+	margin-right: -0.2em;
+	transition: transform 0.6s ease, margin-right 0.6s ease;
+}
+#settings .danger_zone[open] summary::before {
+	margin-right: 0;
+}
